@@ -32,6 +32,10 @@
   function updateTimer() {
     const timeLeft = startTime + timeLimit - Date.now();
     timerLabel.textContent = (timeLeft / 1000).toFixed(2);
+
+    setTimeout( ()=> {
+      updateTimer();
+    }, 10);
   }
 
   window.addEventListener('click', () => {
