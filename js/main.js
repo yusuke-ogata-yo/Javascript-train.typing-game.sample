@@ -1,7 +1,14 @@
 'use strict';
 
 {
-  const word = 'apple';
+  const words = [
+    'apple',
+    'sky',
+    'blue',
+    'middle',
+    'set',
+  ]
+  const word = words[Math.floor(Math.random() * words.length)];
   let loc = 0;
   let score = 0;
   let miss = 0;
