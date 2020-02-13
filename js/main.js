@@ -9,10 +9,10 @@
     'set',
   ];
 
-  let word = words[Math.floor(Math.random() * words.length)];
-  let loc = 0;
-  let score = 0;
-  let miss = 0;
+  let word;
+  let loc;
+  let score;
+  let miss;
   const timeLimit = 3 * 1000;
   let startTime;
   let isPlaying = false;
@@ -44,16 +44,31 @@
       clearTimeout(timeoutId);
       timerLabel.textContent = '0.00';
       setTimeout( () => {
-        alert('Game Over');
-      }, 100)
+        showResult();
+      }, 100);
+
+      target.textContent = 'click to replay';
     }
   }
+
+function showResult() {
+
+  const accuracy = score + miss === 0 ? 0 : score / (score + miss) * 100;
+  alert(`${score} letters, ${miss} misses, ${accuracy.toFixed(2)}% accuracy!`);
+}
 
   window.addEventListener('click', () => {
     if (isPlaying === true) {
       return;
     }
     isPlaying = true;
+
+    loc = 0;
+    score = 0;
+    miss = 0;
+    scoreLabel.textContent = score;
+    missLabel.textContent = miss;
+    word = words[Math.floor(Math.random() * words.length)];
     target.textContent = word;
     startTime = Date.now();
     updateTimer();
@@ -63,7 +78,7 @@
     if (isPlaying !== true) {
       return;
     }
-    
+
     if (e.key === word[loc]){
       loc++;
       if (loc === word.length) {
