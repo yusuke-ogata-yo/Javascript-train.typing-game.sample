@@ -60,6 +60,10 @@
   })
 
   window.addEventListener('keydown', (e) => {
+    if (isPlaying !== true) {
+      return;
+    }
+    
     if (e.key === word[loc]){
       loc++;
       if (loc === word.length) {
